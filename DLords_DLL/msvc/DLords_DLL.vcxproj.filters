@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{bc2c2ced-d913-45b1-971f-ca2394ac83c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Utils">
+      <UniqueIdentifier>{a982bfb7-e4ac-4d92-8589-e1eb305384ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Utils\Chronometer">
+      <UniqueIdentifier>{5e921915-9011-4159-a280-21cfdb489673}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Utils\Threads">
+      <UniqueIdentifier>{98de3ab9-8f76-4487-a739-ffd4511f910e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\HDE">
+      <UniqueIdentifier>{23a554f5-84d0-4fa8-b0df-49363c0f63bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\HDE\public">
+      <UniqueIdentifier>{d893a12e-a99d-4b56-aaca-138484be18fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\HDE\src">
+      <UniqueIdentifier>{304bea2c-d4a4-48c1-989c-ac2a42eddf28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Utils\Logger">
+      <UniqueIdentifier>{cef010c2-8de6-4edf-ae52-ac4eca2ef50b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\SDK">
+      <UniqueIdentifier>{d29df3fa-5035-406a-8051-99dd5cae97c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Callbacks">
+      <UniqueIdentifier>{c73fa192-37f8-4ea2-b661-3b42d4d75a82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Callbacks\impl">
+      <UniqueIdentifier>{9b8ea252-ed7a-4169-85b0-52394bfce3a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Events">
+      <UniqueIdentifier>{2dd4fadc-0e11-4694-ba50-bec27f47cea1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Events\Game">
+      <UniqueIdentifier>{3e7bebdb-1413-4e6d-8258-ec006555530e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Events\Net">
+      <UniqueIdentifier>{8bc125fb-7c3d-498a-b81f-c3461a99dc2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Renderer">
+      <UniqueIdentifier>{ba4d91f9-a681-4c96-adae-0db895018ea9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Renderer\SimpleUI">
+      <UniqueIdentifier>{8bbe8ca7-bd50-450c-8787-8b824962c220}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Renderer\Drawing">
+      <UniqueIdentifier>{97128bd0-3f99-4d8e-b764-cf5047c3d0ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Features">
+      <UniqueIdentifier>{1232a60b-df66-4982-bdaf-1ae174e80979}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Features\LocalPlayer">
+      <UniqueIdentifier>{0ba9e603-6cf5-4e54-acaf-c821432b2c2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Features\Players">
+      <UniqueIdentifier>{31e47579-8a09-4bd9-acaf-2a6ac33cc79e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Features\World">
+      <UniqueIdentifier>{b6a7cab0-ac66-4188-9590-7cc47984bbee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Data">
+      <UniqueIdentifier>{6c27f13a-0d12-4c57-9bc9-a641f857fa06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Common">
+      <UniqueIdentifier>{6f158732-bf7c-4592-9e73-db71cb9fca50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\App">
+      <UniqueIdentifier>{e9e8a771-105d-4654-8a8a-6143467098f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Renderer\SimpleUI\Tabs">
+      <UniqueIdentifier>{66ef3d2b-cd95-4251-9861-08f26ad40171}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Renderer\SimpleUI\Widgets">
+      <UniqueIdentifier>{3ceb596c-6940-4d19-b05c-e7836c6be55f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Hooks">
+      <UniqueIdentifier>{831d031a-f87d-466d-9aab-89bd1469783c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\SDK\Granny">
+      <UniqueIdentifier>{b0d998c8-21a0-43cb-8019-9ec354e3f266}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\SDK\Game">
+      <UniqueIdentifier>{302cfc7d-e534-4f34-a38b-32f6d92833a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Features\Fixes">
+      <UniqueIdentifier>{e83eb9e4-7039-43b9-9714-c0f996b6cbc6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ImGui">
+      <UniqueIdentifier>{81af1b36-d8c3-4871-b2a6-7335c15d9180}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ImGui\public">
+      <UniqueIdentifier>{23a580f4-8ef4-4275-9f86-95043dd86c76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ImGui\src">
+      <UniqueIdentifier>{e4c88e20-ed6c-45be-bf78-ea356df38b20}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\ImGui\public\imconfig.h">
+      <Filter>src\ImGui\public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ImGui\public\imgui.h">
+      <Filter>src\ImGui\public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ImGui\public\imgui_impl_dx9.h">
+      <Filter>src\ImGui\public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ImGui\public\imgui_impl_win32.h">
+      <Filter>src\ImGui\public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ImGui\public\imgui_internal.h">
+      <Filter>src\ImGui\public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ImGui\public\imstb_rectpack.h">
+      <Filter>src\ImGui\public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ImGui\public\imstb_textedit.h">
+      <Filter>src\ImGui\public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ImGui\public\imstb_truetype.h">
+      <Filter>src\ImGui\public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\precompiled.hpp">
+      <Filter>src\App</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Callbacks\impl\callbacks_args.hpp">
+      <Filter>src\Callbacks\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Callbacks\impl\callbacks_impl.hpp">
+      <Filter>src\Callbacks\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Callbacks\impl\hookchains_impl.h">
+      <Filter>src\Callbacks\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Callbacks\callbacks.hpp">
+      <Filter>src\Callbacks</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Callbacks\hookchains.h">
+      <Filter>src\Callbacks</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Common\Common.hpp">
+      <Filter>src\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Data\Effects.hpp">
+      <Filter>src\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Data\Entities.hpp">
+      <Filter>src\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Data\GameMap.hpp">
+      <Filter>src\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Data\GameUI.hpp">
+      <Filter>src\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Data\Items.hpp">
+      <Filter>src\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Data\KeyBinds.hpp">
+      <Filter>src\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Data\Magic.hpp">
+      <Filter>src\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Data\Objects.hpp">
+      <Filter>src\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Data\Players.hpp">
+      <Filter>src\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Data\WorldTime.hpp">
+      <Filter>src\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Events\Net\dak_events.hpp">
+      <Filter>src\Events\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Events\Net\net_events.hpp">
+      <Filter>src\Events\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Events\Net\qevents.hpp">
+      <Filter>src\Events\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Events\Events.hpp">
+      <Filter>src\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Hooks\Hooks.hpp">
+      <Filter>src\Hooks</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Hooks\Unload.hpp">
+      <Filter>src\Hooks</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Renderer\Drawing\Drawing.hpp">
+      <Filter>src\Renderer\Drawing</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Renderer\SimpleUI\Widgets\Widgets.hpp">
+      <Filter>src\Renderer\SimpleUI\Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Renderer\SimpleUI\SimpleUI.hpp">
+      <Filter>src\Renderer\SimpleUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Renderer\Renderer.hpp">
+      <Filter>src\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\SDK\Game\Binds.hpp">
+      <Filter>src\SDK\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\SDK\Game\Camera.hpp">
+      <Filter>src\SDK\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\SDK\Game\Effects.hpp">
+      <Filter>src\SDK\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\SDK\Game\Entity.hpp">
+      <Filter>src\SDK\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\SDK\Game\GameRenderer.hpp">
+      <Filter>src\SDK\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\SDK\Game\Interface.hpp">
+      <Filter>src\SDK\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\SDK\Game\Math.hpp">
+      <Filter>src\SDK\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\SDK\Game\Net.hpp">
+      <Filter>src\SDK\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\SDK\Game\Player.hpp">
+      <Filter>src\SDK\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\SDK\Granny\grannyformat.hpp">
+      <Filter>src\SDK\Granny</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\SDK\BaseModel.hpp">
+      <Filter>src\SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\SDK\dlords_sdk.hpp">
+      <Filter>src\SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Utils\ChronoMeter\ChronoMeter.hpp">
+      <Filter>src\Utils\Chronometer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Utils\Logger\Logger.hpp">
+      <Filter>src\Utils\Logger</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Utils\Memory.hpp">
+      <Filter>src\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Utils\Module.hpp">
+      <Filter>src\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\HDE\public\hde32.h">
+      <Filter>src\HDE\public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\HDE\public\hde64.h">
+      <Filter>src\HDE\public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\HDE\public\hde_common.h">
+      <Filter>src\HDE\public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\HDE\public\hde_utils.h">
+      <Filter>src\HDE\public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\HDE\public\table32.h">
+      <Filter>src\HDE\public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\HDE\public\table64.h">
+      <Filter>src\HDE\public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Utils\Threads\Threads.hpp">
+      <Filter>src\Utils\Threads</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Utils\Utils.hpp">
+      <Filter>src\Utils</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\ImGui\src\imgui.cpp">
+      <Filter>src\ImGui\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ImGui\src\imgui_draw.cpp">
+      <Filter>src\ImGui\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ImGui\src\imgui_impl_dx9.cpp">
+      <Filter>src\ImGui\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ImGui\src\imgui_impl_win32.cpp">
+      <Filter>src\ImGui\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ImGui\src\imgui_widgets.cpp">
+      <Filter>src\ImGui\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\dllmain.cpp">
+      <Filter>src\App</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\precompiled.cpp">
+      <Filter>src\App</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Callbacks\impl\callbacks_impl.cpp">
+      <Filter>src\Callbacks\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Callbacks\impl\hookchains_impl.cpp">
+      <Filter>src\Callbacks\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Callbacks\callbacks.cpp">
+      <Filter>src\Callbacks</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Common\Common.cpp">
+      <Filter>src\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Data\Effects.cpp">
+      <Filter>src\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Data\Entities.cpp">
+      <Filter>src\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Data\GameMap.cpp">
+      <Filter>src\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Data\GameUI.cpp">
+      <Filter>src\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Data\Items.cpp">
+      <Filter>src\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Data\KeyBinds.cpp">
+      <Filter>src\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Data\Magic.cpp">
+      <Filter>src\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Data\Objects.cpp">
+      <Filter>src\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Data\Players.cpp">
+      <Filter>src\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Data\WorldTime.cpp">
+      <Filter>src\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Events\Game\AwardExp.cpp">
+      <Filter>src\Events\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Events\Game\DropItem.cpp">
+      <Filter>src\Events\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Events\Game\FallDmg.cpp">
+      <Filter>src\Events\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Events\Game\HitMsg.cpp">
+      <Filter>src\Events\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Events\Game\PCGold.cpp">
+      <Filter>src\Events\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Events\Game\ReqLoot.cpp">
+      <Filter>src\Events\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Events\Net\dak_events.cpp">
+      <Filter>src\Events\Net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Events\Net\net_events.cpp">
+      <Filter>src\Events\Net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Events\Net\qevents.cpp">
+      <Filter>src\Events\Net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Events\Events.cpp">
+      <Filter>src\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Features\Fixes\FixMouse.cpp">
+      <Filter>src\Features\Fixes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Features\Fixes\OOB_Crash.cpp">
+      <Filter>src\Features\Fixes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Features\LocalPlayer\FlyMode.cpp">
+      <Filter>src\Features\LocalPlayer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Features\LocalPlayer\GodMode.cpp">
+      <Filter>src\Features\LocalPlayer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Features\LocalPlayer\InfDurability.cpp">
+      <Filter>src\Features\LocalPlayer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Features\LocalPlayer\ReduceCooldown.cpp">
+      <Filter>src\Features\LocalPlayer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Features\LocalPlayer\Teleport.cpp">
+      <Filter>src\Features\LocalPlayer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Features\World\BspDebug.cpp">
+      <Filter>src\Features\World</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Hooks\Hooks.cpp">
+      <Filter>src\Hooks</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Hooks\Unload.cpp">
+      <Filter>src\Hooks</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Renderer\Drawing\Drawing.cpp">
+      <Filter>src\Renderer\Drawing</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Renderer\SimpleUI\Tabs\TabInfo.cpp">
+      <Filter>src\Renderer\SimpleUI\Tabs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Renderer\SimpleUI\Tabs\TabPlayer.cpp">
+      <Filter>src\Renderer\SimpleUI\Tabs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Renderer\SimpleUI\Tabs\TabWorld.cpp">
+      <Filter>src\Renderer\SimpleUI\Tabs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Renderer\SimpleUI\Widgets\Widgets.cpp">
+      <Filter>src\Renderer\SimpleUI\Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Renderer\SimpleUI\SimpleUI.cpp">
+      <Filter>src\Renderer\SimpleUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Renderer\Renderer.cpp">
+      <Filter>src\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\SDK\Game\Binds.cpp">
+      <Filter>src\SDK\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\SDK\Game\Entity.cpp">
+      <Filter>src\SDK\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\SDK\Game\GameRenderer.cpp">
+      <Filter>src\SDK\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\SDK\Game\Interface.cpp">
+      <Filter>src\SDK\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\SDK\Game\Math.cpp">
+      <Filter>src\SDK\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\SDK\Game\Net.cpp">
+      <Filter>src\SDK\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\SDK\Game\Player.cpp">
+      <Filter>src\SDK\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\SDK\Granny\grannyformat.cpp">
+      <Filter>src\SDK\Granny</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Utils\ChronoMeter\ChronoMeter.cpp">
+      <Filter>src\Utils\Chronometer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Utils\Logger\Logger.cpp">
+      <Filter>src\Utils\Logger</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Utils\Memory.cpp">
+      <Filter>src\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Utils\Module.cpp">
+      <Filter>src\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\HDE\src\hde32.c">
+      <Filter>src\HDE\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\HDE\src\hde_utils.c">
+      <Filter>src\HDE\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Utils\Threads\Threads.cpp">
+      <Filter>src\Utils\Threads</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

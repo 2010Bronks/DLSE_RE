@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{534eb489-fb54-472d-90a7-702c89196788}</ProjectGuid>
+    <RootNamespace>DLordsDLL</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v145</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v145</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)..\build\$(Configuration)\$(Platform)\bin\</OutDir>
+    <IntDir>$(SolutionDir)..\build\$(Configuration)\$(Platform)\obj\$(ProjectName)\</IntDir>
+    <TargetName>DLords_Core</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)..\build\$(Configuration)\$(Platform)\bin\</OutDir>
+    <IntDir>$(SolutionDir)..\build\$(Configuration)\$(Platform)\obj\$(ProjectName)\</IntDir>
+    <TargetName>DLords_Core</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;LOG_ENABLE;_DEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>precompiled.hpp</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\src\Callbacks;$(ProjectDir)..\src;$(ProjectDir)..\src\ImGui\public;$(ProjectDir)..\src\HDE\public</AdditionalIncludeDirectories>
+      <LanguageStandard_C>stdclatest</LanguageStandard_C>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <SupportJustMyCode>false</SupportJustMyCode>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+      <OptimizeReferences>false</OptimizeReferences>
+      <EnableCOMDATFolding>false</EnableCOMDATFolding>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;LOG_ENABLE;NDEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>precompiled.hpp</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\src\Callbacks;$(ProjectDir)..\src;$(ProjectDir)..\src\ImGui\public;$(ProjectDir)..\src\HDE\public</AdditionalIncludeDirectories>
+      <LanguageStandard_C>stdclatest</LanguageStandard_C>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\Callbacks\callbacks.hpp" />
+    <ClInclude Include="..\src\Callbacks\hookchains.h" />
+    <ClInclude Include="..\src\Callbacks\impl\callbacks_args.hpp" />
+    <ClInclude Include="..\src\Callbacks\impl\callbacks_impl.hpp" />
+    <ClInclude Include="..\src\Callbacks\impl\hookchains_impl.h" />
+    <ClInclude Include="..\src\Common\Common.hpp" />
+    <ClInclude Include="..\src\Data\Effects.hpp" />
+    <ClInclude Include="..\src\Data\Entities.hpp" />
+    <ClInclude Include="..\src\Data\GameMap.hpp" />
+    <ClInclude Include="..\src\Data\GameUI.hpp" />
+    <ClInclude Include="..\src\Data\Items.hpp" />
+    <ClInclude Include="..\src\Data\KeyBinds.hpp" />
+    <ClInclude Include="..\src\Data\Magic.hpp" />
+    <ClInclude Include="..\src\Data\Objects.hpp" />
+    <ClInclude Include="..\src\Data\Players.hpp" />
+    <ClInclude Include="..\src\Data\WorldTime.hpp" />
+    <ClInclude Include="..\src\Events\Events.hpp" />
+    <ClInclude Include="..\src\Events\Net\dak_events.hpp" />
+    <ClInclude Include="..\src\Events\Net\net_events.hpp" />
+    <ClInclude Include="..\src\Events\Net\qevents.hpp" />
+    <ClInclude Include="..\src\Hooks\Hooks.hpp" />
+    <ClInclude Include="..\src\Hooks\Unload.hpp" />
+    <ClInclude Include="..\src\ImGui\public\imconfig.h" />
+    <ClInclude Include="..\src\ImGui\public\imgui.h" />
+    <ClInclude Include="..\src\ImGui\public\imgui_impl_dx9.h" />
+    <ClInclude Include="..\src\ImGui\public\imgui_impl_win32.h" />
+    <ClInclude Include="..\src\ImGui\public\imgui_internal.h" />
+    <ClInclude Include="..\src\ImGui\public\imstb_rectpack.h" />
+    <ClInclude Include="..\src\ImGui\public\imstb_textedit.h" />
+    <ClInclude Include="..\src\ImGui\public\imstb_truetype.h" />
+    <ClInclude Include="..\src\precompiled.hpp" />
+    <ClInclude Include="..\src\Renderer\Drawing\Drawing.hpp" />
+    <ClInclude Include="..\src\Renderer\Renderer.hpp" />
+    <ClInclude Include="..\src\Renderer\SimpleUI\SimpleUI.hpp" />
+    <ClInclude Include="..\src\Renderer\SimpleUI\Widgets\Widgets.hpp" />
+    <ClInclude Include="..\src\SDK\BaseModel.hpp" />
+    <ClInclude Include="..\src\SDK\dlords_sdk.hpp" />
+    <ClInclude Include="..\src\SDK\Game\Binds.hpp" />
+    <ClInclude Include="..\src\SDK\Game\Camera.hpp" />
+    <ClInclude Include="..\src\SDK\Game\Effects.hpp" />
+    <ClInclude Include="..\src\SDK\Game\Entity.hpp" />
+    <ClInclude Include="..\src\SDK\Game\GameRenderer.hpp" />
+    <ClInclude Include="..\src\SDK\Game\Interface.hpp" />
+    <ClInclude Include="..\src\SDK\Game\Math.hpp" />
+    <ClInclude Include="..\src\SDK\Game\Net.hpp" />
+    <ClInclude Include="..\src\SDK\Game\Player.hpp" />
+    <ClInclude Include="..\src\SDK\Granny\grannyformat.hpp" />
+    <ClInclude Include="..\src\Utils\ChronoMeter\ChronoMeter.hpp" />
+    <ClInclude Include="..\src\Utils\Logger\Logger.hpp" />
+    <ClInclude Include="..\src\Utils\Memory.hpp" />
+    <ClInclude Include="..\src\Utils\Module.hpp" />
+    <ClInclude Include="..\src\HDE\public\hde32.h" />
+    <ClInclude Include="..\src\HDE\public\hde64.h" />
+    <ClInclude Include="..\src\HDE\public\hde_common.h" />
+    <ClInclude Include="..\src\HDE\public\hde_utils.h" />
+    <ClInclude Include="..\src\HDE\public\table32.h" />
+    <ClInclude Include="..\src\HDE\public\table64.h" />
+    <ClInclude Include="..\src\Utils\Threads\Threads.hpp" />
+    <ClInclude Include="..\src\Utils\Utils.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\Callbacks\callbacks.cpp" />
+    <ClCompile Include="..\src\Callbacks\impl\callbacks_impl.cpp" />
+    <ClCompile Include="..\src\Callbacks\impl\hookchains_impl.cpp" />
+    <ClCompile Include="..\src\Common\Common.cpp" />
+    <ClCompile Include="..\src\Data\Effects.cpp" />
+    <ClCompile Include="..\src\Data\Entities.cpp" />
+    <ClCompile Include="..\src\Data\GameMap.cpp" />
+    <ClCompile Include="..\src\Data\GameUI.cpp" />
+    <ClCompile Include="..\src\Data\Items.cpp" />
+    <ClCompile Include="..\src\Data\KeyBinds.cpp" />
+    <ClCompile Include="..\src\Data\Magic.cpp" />
+    <ClCompile Include="..\src\Data\Objects.cpp" />
+    <ClCompile Include="..\src\Data\Players.cpp" />
+    <ClCompile Include="..\src\Data\WorldTime.cpp" />
+    <ClCompile Include="..\src\dllmain.cpp" />
+    <ClCompile Include="..\src\Events\Events.cpp" />
+    <ClCompile Include="..\src\Events\Game\AwardExp.cpp" />
+    <ClCompile Include="..\src\Events\Game\DropItem.cpp" />
+    <ClCompile Include="..\src\Events\Game\FallDmg.cpp" />
+    <ClCompile Include="..\src\Events\Game\HitMsg.cpp" />
+    <ClCompile Include="..\src\Events\Game\PCGold.cpp" />
+    <ClCompile Include="..\src\Events\Game\ReqLoot.cpp" />
+    <ClCompile Include="..\src\Events\Net\dak_events.cpp" />
+    <ClCompile Include="..\src\Events\Net\net_events.cpp" />
+    <ClCompile Include="..\src\Events\Net\qevents.cpp" />
+    <ClCompile Include="..\src\Features\Fixes\FixMouse.cpp" />
+    <ClCompile Include="..\src\Features\Fixes\OOB_Crash.cpp" />
+    <ClCompile Include="..\src\Features\LocalPlayer\FlyMode.cpp" />
+    <ClCompile Include="..\src\Features\LocalPlayer\GodMode.cpp" />
+    <ClCompile Include="..\src\Features\LocalPlayer\InfDurability.cpp" />
+    <ClCompile Include="..\src\Features\LocalPlayer\ReduceCooldown.cpp" />
+    <ClCompile Include="..\src\Features\LocalPlayer\Teleport.cpp" />
+    <ClCompile Include="..\src\Features\World\BspDebug.cpp" />
+    <ClCompile Include="..\src\Hooks\Hooks.cpp" />
+    <ClCompile Include="..\src\Hooks\Unload.cpp" />
+    <ClCompile Include="..\src\ImGui\src\imgui.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\src\ImGui\src\imgui_draw.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\src\ImGui\src\imgui_impl_dx9.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\src\ImGui\src\imgui_impl_win32.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\src\ImGui\src\imgui_widgets.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\src\precompiled.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\src\Renderer\Drawing\Drawing.cpp" />
+    <ClCompile Include="..\src\Renderer\Renderer.cpp" />
+    <ClCompile Include="..\src\Renderer\SimpleUI\SimpleUI.cpp" />
+    <ClCompile Include="..\src\Renderer\SimpleUI\Tabs\TabInfo.cpp" />
+    <ClCompile Include="..\src\Renderer\SimpleUI\Tabs\TabPlayer.cpp" />
+    <ClCompile Include="..\src\Renderer\SimpleUI\Tabs\TabWorld.cpp" />
+    <ClCompile Include="..\src\Renderer\SimpleUI\Widgets\Widgets.cpp" />
+    <ClCompile Include="..\src\SDK\Game\Binds.cpp" />
+    <ClCompile Include="..\src\SDK\Game\Entity.cpp" />
+    <ClCompile Include="..\src\SDK\Game\GameRenderer.cpp" />
+    <ClCompile Include="..\src\SDK\Game\Interface.cpp" />
+    <ClCompile Include="..\src\SDK\Game\Math.cpp" />
+    <ClCompile Include="..\src\SDK\Game\Net.cpp" />
+    <ClCompile Include="..\src\SDK\Game\Player.cpp" />
+    <ClCompile Include="..\src\SDK\Granny\grannyformat.cpp" />
+    <ClCompile Include="..\src\Utils\ChronoMeter\ChronoMeter.cpp" />
+    <ClCompile Include="..\src\Utils\Logger\Logger.cpp" />
+    <ClCompile Include="..\src\Utils\Memory.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\src\Utils\Module.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\src\HDE\src\hde32.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\src\HDE\src\hde_utils.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\src\Utils\Threads\Threads.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

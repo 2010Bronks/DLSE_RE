@@ -31,7 +31,7 @@ The following features have already been implemented:
 
 - **Mouse Fix** – Corrects mouse behavior when playing in windowed mode (use the `-gdi` startup parameter).
 - **OOB Crash Fix** – Resolves the crash that occurs when exiting Out Of Bounds (OOB) areas.
-- **Memory & Hooking System** – A convenient framework for obtaining pointers, hooking functions, and managing game memory (powered by the `memoria dep` module).
+- **Memory & Hooking System** – A convenient framework for obtaining pointers, hooking functions, and managing game memory.
 - **God Mode** – Includes simple invincibility, reflect damage, and a mode where no damage is dealt to anyone.
 - **Infinite Durability** – Items no longer lose durability over time.
 - **Reduced Spell Cooldowns** – Shorten the cooldown period for spells.

@@ -1,0 +1,57 @@
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.VC.db
+*.VC.opendb
+*.vsidx
+*.ipch
+*.idb
+*.pdb
+
+# Build output
+build/
+bin/
+**/bin/
+obj/
+**/obj/
+Debug/
+Release/
+x64/
+x86/
+Win32/
+
+# MSVC intermediate files
+*.obj
+*.pch
+*.tlog
+*.lastbuildstate
+*.recipe
+*.ilk
+*.exp
+*.iobj
+*.ipdb
+*.pgc
+*.pgd
+*.rsp
+*.res
+*.tmp
+*.log
+*.dt.d.json
+*.dt.module.json
+*.dt.module.json.command
+unsuccessfulbuild
+
+# Compiled binaries and libraries
+*.dll
+*.exe
+*.lib
+
+# OS / editor artifacts
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
