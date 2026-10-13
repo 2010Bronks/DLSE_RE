@@ -1,4 +1,5 @@
 #pragma once
+#include <cstddef>
 
 #pragma pack(push, 1)
 //?
@@ -72,104 +73,126 @@ struct dl_monster_sound_t
 };
 static constexpr auto dl_monster_sound_t_size = sizeof(dl_monster_sound_t);
 
+
+struct dl_monster_candidate_t
+{
+    int8_t selectionGroup;       // 0 = unused
+    int8_t chance;
+    int16_t itemOrAttackId;
+};
+static_assert(sizeof(dl_monster_candidate_t) == 4);
+
+static_assert(sizeof(void*) == 4);
+
 struct dl_monster_t
 {
-	char name[21];
-	int8_t data016;
-	int16_t mob_type; // 16 types
-	int8_t data018;
-	int data01C;
-	int data020;
-	int data024;
-	int data028;
-	int data02C;
-	int data030;
-	int data034;
-	int data038;
-	int data03C;
-	int data040;
-	int data044;
-	int data048;
-	int8_t pad1;
-	int16_t iProMagic;
-	int16_t iProFire;
-	int16_t iProPetrify;
-	int16_t iProPoison;
-	int16_t iProIce;
-	int16_t iProGas;
-	int data058;
-	int data05C;
-	int data060;
-	int data064;
-	int data068;
-	int16_t pad2;
-	int level;
-	int data070;
-	int data074;
-	int16_t iDex3;
-	int16_t iDex4;
-	int16_t iDodgeParry_R;
-	int16_t iArmor;
-	int data080;
-	int data084;
-	int data088;
-	int data08C;
-	int data090;
-	int data094;
-	int data098;
-	int data09C;
-	__int16 data0A0;
-	__int16 treasureTableId;
-	__int16 treasureTableId2;
-	__int16 data0A6;
+	char name[22]; 		// 21 chars max + 1 NUL
+	int16_t creatureType; 	// 16 types, 0..15
+	int16_t npcProfileId; 	// D6NPC profile ID
+	int16_t sex;		// 0 = male, 1 = female
+	int16_t raceBodyProfile;// race/body type, 0..15
+	int16_t legacyWwRoleId;	// W&W role, can't find consumer in dlords
+	int16_t alignment;	// 0 = evil, 50 = neutral, 100 = good
+	int16_t unknown022;	// can't fnd consumer anywhere, W&W uses 00 and 50, dlords uses 50 only
+	int16_t objectWeight;	// knockback weight
+	int16_t verticalExtent;	// height override
+	int32_t moveSpeed;	// base speed, scaled by difficulty
+	int16_t strength;
+	int16_t intellect;
+	int16_t dexterity;
+	int16_t agility;
+	int16_t vitality;	// air = 10 + 2 * vitality
+	int16_t honor;
+	int16_t legacyWwWill;	// W&W will, cant find use in dlords
+	int16_t legacyWwPresence;	// W&W presence, cant find use in dlords
+	uint8_t reserved03C[16];	// seems unused
+	int16_t proMagic;
+	int16_t proFire;
+	int16_t proPetrify;
+	int16_t proPoison;
+	int16_t proIce;
+	int16_t proGas;
+	int16_t legacyWwResistances[10];// W&W resistances, cant find use in CE or steam
+	int32_t level;			// monster level and HP roll count
+	int32_t hpRollRange;
+	int32_t hpBase;
+	int16_t unknown078;		// seems to represent monster power/value? cant find consumer in W&W or CE or steam
+	int16_t attackRating;
+	int16_t parryRating;
+	int16_t shieldRating;
+	int16_t legacyMonsterSkill;	// W&W combat skill, cant find use in CE or steam
+	int16_t goreEffectType;		// 0 = blood, 1 = bone, 2 = slime, 3 = W&W green blood
+	int16_t legacyAnimSetA;		// W&W animation set
+	int16_t legacyAnimSetB;		// W&W animation set
+	int16_t legacyShadowId;		// W&W shadow ID
+	int16_t verticalNavClearance;	// flight/navigation clearance
+	int16_t unknown08C;		// seems like some kind of aquatic property in W&W, cant find consumers in any game
+	int16_t requiredEnchantRating;	// W&W weapon enchant
+	int16_t primarySpecialId;	// spell/action ID (1-145)
+	int16_t secondarySpecialId;	// spell/action ID (1-145)
+	int32_t primarySpecialRange;	// 0 = 32768
+	int32_t footprintRadius;	// horizontal collision radius, 0 = model default
+	int32_t xpReward;
+	int16_t requiredTargetQFlag;	// player QFlag index, 0 = no requirement
+	int16_t treasureTableId;	
+	int16_t treasureTableId2;
+	int16_t reserved0A6;		// unused, always 0
 	dl_trtable_t* pTreasureTable;
 	dl_trtable_t* pTreasureTable2;
-	int16_t data0B0;
-	int16_t data0B2;
-	int data0B4;
-	int data0B8;
-	int data0BC;
-	int data0C0;
-	int data0C4;
-	int data0C8;
-	int data0CC;
-	int data0D0;
-	int data0D4;
-	int data0D8;
-	int data0DC;
-	int data0E0;
-	int data0E4;
-	int data0E8;
-	int data0EC;
-	int data0F0;
-	int data0F4;
-	int data0F8;
-	int data0FC;
-	int data100;
-	int data104;
-	int data108;
-	int data10C;
-	int data110;
-	int data114;
-	int data118;
-	int data11C;
-	int data120;
-	int data124;
-	int iAttackSpeed32;
-	int data12C;
-	int data130;
-	int data134;
-	int data138;
-	int data13C;
-	int data140;
-	int data144;
-	__int16 data148;
-	__int16 monId;
-	__int16 data14C;
-	__int16 iMonSndCount;
-	dl_monster_sound_t* pMonSnd;
+	int16_t modelId;
+	int16_t modelAuxB2;		// model 25 texture variant selector
+	int16_t modelAuxB4;		// model 25 companion texture variant
+	int16_t legacyOverlayB6;	// W&W model overlay 2
+	int16_t legacyOverlayB8;	// W&W model overlay 3
+	int16_t legacyOverlayBA;	// W&W model overlay 4
+	dl_monster_candidate_t candidates[16]; // runtime item/attack selection entries
+	int16_t resourceCapacities[6];	// starting/max spell resource pools
+	uint8_t actionIds[16];		// spell/action IDs, 0 = unused, 1-145 valid
+	uint8_t normalFightEnabled;	// !=0 enables ordinary melee attacks
+	int8_t spellChance;		// chance to use actionIds list
+	int8_t jumpPounceChance;	// forward jump/pounce chance
+	int8_t primarySpecialChance;	// chance to use primarySpecialId
+	int8_t secondarySpecialChance;	// chance to use secondarySpecialId
+	int8_t stealChance;		// thief steal attempt chance
+	int8_t blockChance;
+	int8_t strafeChance;
+	int8_t backstepChance;
+	int8_t flightStateBias;		// probability bias for takeoff/landing
+	uint8_t reserved122[6];		// unknown, always 0
+	int32_t actionDelay;
+	int32_t secondarySpecialRange;	// 0 = 32768
+	uint32_t flags;			// monster behavior flags
+	uint8_t reserved134[8];		// unknown, always 0
+	int32_t packRollCount;		// encounter size dice
+	int32_t packRollRange;		// sides per encounter size die
+	int32_t packBase;		// flat encounter size bonus
+	int16_t chainThreshold;		// encounter chain continuation threshold
+	int16_t nextMonsterId;		// next D6MONS.DAT monster ID
+	int16_t alternateNextMonsterId;	// alternate next ID, 50% selection
+	int16_t monsterSoundProfileId;	// D6MONSND.DAT ID
+	dl_monster_sound_t* pMonSnd;	// shared mutable sound profile in RAM
 };
 static_assert(sizeof(dl_monster_t) == 340); // 0x154
+static_assert(offsetof(dl_monster_t, creatureType) == 0x016);
+static_assert(offsetof(dl_monster_t, npcProfileId) == 0x018);
+static_assert(offsetof(dl_monster_t, moveSpeed) == 0x028);
+static_assert(offsetof(dl_monster_t, proMagic) == 0x04C);
+static_assert(offsetof(dl_monster_t, proGas) == 0x056);
+static_assert(offsetof(dl_monster_t, level) == 0x06C);
+static_assert(offsetof(dl_monster_t, attackRating) == 0x07A);
+static_assert(offsetof(dl_monster_t, treasureTableId) == 0x0A2);
+static_assert(offsetof(dl_monster_t, pTreasureTable) == 0x0A8);
+static_assert(offsetof(dl_monster_t, modelId) == 0x0B0);
+static_assert(offsetof(dl_monster_t, candidates) == 0x0BC);
+static_assert(offsetof(dl_monster_t, resourceCapacities) == 0x0FC);
+static_assert(offsetof(dl_monster_t, actionIds) == 0x108);
+static_assert(offsetof(dl_monster_t, actionDelay) == 0x128);
+static_assert(offsetof(dl_monster_t, flags) == 0x130);
+static_assert(offsetof(dl_monster_t, packRollCount) == 0x13C);
+static_assert(offsetof(dl_monster_t, chainThreshold) == 0x148);
+static_assert(offsetof(dl_monster_t, nextMonsterId) == 0x14A);
+static_assert(offsetof(dl_monster_t, monsterSoundProfileId) == 0x14E);
+static_assert(offsetof(dl_monster_t, pMonSnd) == 0x150);
 
 struct dl_object_unk_t
 {
