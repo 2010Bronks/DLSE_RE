@@ -142,6 +142,7 @@
     <ClInclude Include="..\src\SDK\BaseModel.hpp" />
     <ClInclude Include="..\src\SDK\dlords_sdk.hpp" />
     <ClInclude Include="..\src\SDK\Game\Binds.hpp" />
+    <ClInclude Include="..\src\SDK\Game\BSP.hpp" />
     <ClInclude Include="..\src\SDK\Game\Camera.hpp" />
     <ClInclude Include="..\src\SDK\Game\Effects.hpp" />
     <ClInclude Include="..\src\SDK\Game\Entity.hpp" />
@@ -192,6 +193,7 @@
     <ClCompile Include="..\src\Events\Net\qevents.cpp" />
     <ClCompile Include="..\src\Features\Fixes\FixMouse.cpp" />
     <ClCompile Include="..\src\Features\Fixes\OOB_Crash.cpp" />
+    <ClCompile Include="..\src\Features\Fixes\RendererOpts.cpp" />
     <ClCompile Include="..\src\Features\LocalPlayer\FlyMode.cpp" />
     <ClCompile Include="..\src\Features\LocalPlayer\GodMode.cpp" />
     <ClCompile Include="..\src\Features\LocalPlayer\InfDurability.cpp" />

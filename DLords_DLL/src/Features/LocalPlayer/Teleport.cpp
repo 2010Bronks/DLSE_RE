@@ -109,20 +109,38 @@ static void EveryFrame()
 {
 	static bool once = true;
 
-	if (GetAsyncKeyState(giTeleportButton))
+	auto pMe = GetEntityByIndex(0);
+	if (!pMe)
+		return;
+
+	vector3 forward, right, up, rot;
+	rot = ToSourceAngles(pMe->rot);
+	GetDirections(&rot, &forward, &right, &up);
+
+	if (GetAsyncKeyState(VK_LSHIFT) && GetAsyncKeyState(giTeleportButton))
 	{
 		if (once)
 		{
 			once = false;
 
+			// forward * dist * 1024.f
+
 			float mod = 1.0f;
 			if (GetAsyncKeyState(VK_LMENU))
 				mod = 10.0f;
 
-			if (GetAsyncKeyState(VK_LSHIFT))
+			if (GetAsyncKeyState(VK_LCONTROL))
 				mod *= -1.0f;
-
-			Teleport(gfTeleportDist * mod);
+			if (GetAsyncKeyState(VK_SPACE))
+			{
+				vector3 offset = up * gfTeleportDist * mod * 1024.f;
+				Teleport(offset);
+			}
+			else
+			{
+				vector3 offset = forward * gfTeleportDist * mod * 1024.f;
+				Teleport(offset);
+			}
 		}
 	}
 	else

@@ -135,6 +135,21 @@ static void TabElements()
 			pSlot->durability = itemDurability;
 		}
 
+		static int level = 0;
+		ImGui::InputInt("Level #2", &level);
+
+		if (ImGui::Button("Re-roll"))
+		{
+			int rar = 0;
+			if (auto pPly = GetLocalPlayer())
+				rar = Item::RollRarityMod(level == 0 ? pPly->GetData()->iLevel32 : level);
+			else
+				rar = Item::RollRarityMod(level);
+
+			Item::Item_InitFromIdx(pSlot, pSlot->itemIdx, 0);
+			Item::Item_FormatModRarity(pSlot, rar);
+		}
+
 		auto item = CItemHelper(pSlot);
 		auto pRar = item.GetRarity();
 

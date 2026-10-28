@@ -150,11 +150,11 @@ namespace MonRec
 	static int* pMonIDCnt = nullptr;
 	static int* pMonIDs = nullptr;
 
-	using GetMonsterById_t = dl_entity_t * (__fastcall*)(int monId);
+	using GetMonsterById_t = dl_monster_t * (__fastcall*)(int monId);
 
 	GetMonsterById_t pfnGetMonsterById;
 
-	static dl_entity_t* __fastcall GetMonsterById(int monId)
+	static dl_monster_t* __fastcall GetMonsterById(int monId)
 	{
 		auto res = pfnGetMonsterById(monId);
 		//LOG("[GetMonsterById] Mon[{}]", monId);
@@ -206,7 +206,26 @@ namespace Game
 	static const char** s_pRaces = nullptr;
 	static const char** s_pClasses = nullptr;
 
-	static GetCameraMovement_t pfnGetCameraMovement;
+	static GetCameraMovement_t pfnGetCameraMovement = nullptr;
+
+	static int* s_pRandomSeed = nullptr;
+	static int* s_pLcgMultiplier = nullptr;
+
+	int *GetRandomSeed()
+	{
+		if (!s_pRandomSeed)
+			return nullptr;
+
+		return s_pRandomSeed;
+	}
+
+	int *GetRandomLcgMul()
+	{
+		if (!s_pLcgMultiplier)
+			return nullptr;
+
+		return s_pLcgMultiplier;
+	}
 
 	float GetFrametime()
 	{
@@ -218,6 +237,14 @@ namespace Game
 			return 0.0f;
 
 		return ms / 1000.0f;
+	}
+
+	int GetFrametimeMs()
+	{
+		if (!s_pFrametime)
+			return 0;
+
+		return *s_pFrametime;
 	}
 
 	float GetFPS()
@@ -287,6 +314,9 @@ namespace Game
 		pfnGetCameraMovement = reinterpret_cast<GetCameraMovement_t>(camera_movement.Get());
 		if (!camera_movement.IsValid())
 			LOG_DBG_WARNING("[Game::GetCameraMovement] Could not find signature!");
+
+		CREATE_GES("A3 ?? ?? ?? ?? C1 E8 10 0F AF 44 24 08 C1 E8 10 89 44 24 04 5A 8B 04 24 05 80 70 00 00", s_pRandomSeed, 1);
+		CREATE_GES("BA ?? ?? ?? ?? F7 EA A3 ?? ?? ?? ?? C1 E8 10 0F AF 44 24 08 C1 E8 10 89 44 24 04 5A 8B 04 24 05 80 70 00 00", s_pLcgMultiplier, 1);
 	}
 }
 

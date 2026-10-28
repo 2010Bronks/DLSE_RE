@@ -13,6 +13,7 @@
 #include "Game/GameRenderer.hpp"
 #include "Game/Camera.hpp"
 #include "Game/Effects.hpp"
+#include "Game/BSP.hpp"
 #include "BaseModel.hpp"
 
 enum ELangToken : char
@@ -80,14 +81,6 @@ static const std::string GameStateToStr(EGameState num)
 	}
 
 #undef GS_NUM_CASE
-}
-
-namespace DLords::BSP
-{
-	constexpr auto MAX_MAP_FACES = 80000;
-	constexpr auto MAX_MAP_NODES = 40000;
-	constexpr auto MAX_NAV_LOOKUP = 20000;
-	constexpr auto MAX_FOUNTAINS = 16;
 }
 
 namespace DLords::DEEP6

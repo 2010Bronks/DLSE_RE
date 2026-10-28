@@ -133,7 +133,7 @@ namespace Draw
 
 	static std::mutex s_dbg_mtx{};
 	static debug_draw_data_t s_dbg_data[32];
-	static ImVec2 s_dbg_pos = { 20.0f, 120.0f };
+	static ImVec2 s_dbg_pos = { 20.0f, 240.0f };
 
 	void OnDrawUI(HookChain_OnDrawUI::ICallback* chain, CHookChainArgs_OnDrawUI& args);
 

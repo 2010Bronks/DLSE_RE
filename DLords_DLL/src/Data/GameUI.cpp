@@ -52,12 +52,26 @@ static void __fastcall GameUI::OpenPageFunc(EGuiPages pageId)
 	}
 }
 
+bool GameUI::IsAnyPageOpened()
+{
+	if (!s_pPageState)
+		return false;
+
+	for (int page = 0; page < eGP_Max; page++)
+	{
+		if (s_pPageState[page])
+			return true;
+	}
+
+	return false;
+}
+
 bool GameUI::IsPageOpened(EGuiPages page)
 {
 	if (!s_pPageState)
 		return false;
 
-	return !s_pPageState[page];
+	return s_pPageState[page];
 }
 
 bool GameUI::OpenPage(EGuiPages page)

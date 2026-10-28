@@ -4,6 +4,7 @@ namespace GameUI
 {
 	extern bool bLogPageOpen;
 
+	extern bool IsAnyPageOpened();
 	extern bool IsPageOpened(EGuiPages page);
 	extern bool OpenPage(EGuiPages page);
 	extern bool ClosePage(EGuiPages page);

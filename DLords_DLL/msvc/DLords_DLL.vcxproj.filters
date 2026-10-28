@@ -279,6 +279,9 @@
     <ClInclude Include="..\src\Utils\Utils.hpp">
       <Filter>src\Utils</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\SDK\Game\BSP.hpp">
+      <Filter>src\SDK\Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\ImGui\src\imgui.cpp">
@@ -469,6 +472,9 @@
     </ClCompile>
     <ClCompile Include="..\src\Utils\Threads\Threads.cpp">
       <Filter>src\Utils\Threads</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Features\Fixes\RendererOpts.cpp">
+      <Filter>src\Features\Fixes</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

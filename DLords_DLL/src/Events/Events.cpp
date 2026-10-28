@@ -1,5 +1,52 @@
 #include "precompiled.hpp"
 
+namespace Dlords::BSP
+{
+	static bsp_data_t** pDataArray = nullptr;
+	static int* pDataArrayCount = nullptr;
+
+	int GetCount()
+	{
+		if (!pDataArrayCount)
+			return -1;
+
+		return *pDataArrayCount;
+	}
+
+	bsp_data_t* GetDataById(size_t id)
+	{
+		int count = GetCount();
+		if (count == -1)
+			return nullptr;
+
+		if (id > count)
+			return nullptr;
+
+		if (!pDataArray)
+			return nullptr;
+
+		auto pData = pDataArray[id];
+		if (!pData)
+			return nullptr;
+
+		return pData;
+	}
+
+	bsp_data_t** Get()
+	{
+		if (!pDataArray)
+			return nullptr;
+
+		return pDataArray;
+	}
+
+	static void Find()
+	{
+		CREATE_GES("B9 ?? ?? ?? ?? E8 ?? ?? ?? ?? 8B 0D ?? ?? ?? ?? 8B D7", pDataArray, 1);
+		CREATE_GES("8B 15 ?? ?? ?? ?? B9 ?? ?? ?? ?? 89 2D", pDataArrayCount, 2);
+	}
+}
+
 extern int* g_piSpoke;
 extern int* g_piTele;
 
@@ -35,6 +82,7 @@ static void __fastcall AddImpulseToEntity(int entId, vector3* dir, float power)
 	if (!pfnAddImpulseToEntity)
 		return;
 
+	power = 0.0f;
 	pfnAddImpulseToEntity(entId, dir, power);
 	//LOG_DBG("[AddImpulseToEntity] entId[{}] dir: {}, {}, {} power[{}]", entId, dir->x, dir->y, dir->z, power);
 }
@@ -104,6 +152,7 @@ static void EveryFrame()
 		Draw::Debug(10, std::format("Yaw[{}] Norm[{}]", pEnt->rot.y, rot.y));
 		Draw::Debug(11, std::format("Vel: [{}] [{}] [{}] [{}]", pEnt->velImpulse.x, pEnt->velImpulse.y, pEnt->velImpulse.z, pEnt->velImpulseLen));
 		Draw::Debug(12, std::format("Gravity: [{}]", pEnt->pObject->fScaledFrametimeSec));
+		Draw::Debug(12, std::format("Hz next dmg time left: [{}]", pEnt->nextSomethingDamageTime));
 		//pEnt->pObject->fScaledFrametimeSec = 0.0f;
 	}
 
@@ -125,54 +174,6 @@ static void EveryFrame()
 				//DisableMod();
 				wasApplied = false;
 			}
-
-			
-
-			// int __usercall sub_50B5E0@<eax>(int a1@<edx>, int plyId@<ecx>, int a3@<ebp>)
-
-			//LOG("enum EItems ");
-			//for (int i = 0; i < ItemInfo::GetCount(); i++)
-			//{
-			//	auto pItemInfo = ItemInfo::Get(i);
-			//	if (!pItemInfo)
-			//		continue;
-			//
-			//	LOG("eI_{} = {},", pItemInfo->name, i);
-			//	
-			//}
-			//LOG(";");
-
-			//auto &pData = pPly->GetData()->inventory;
-			//for (int i = 0; i < 275; i++)
-			//{
-			//	auto& slot = pData.other[i];
-			//	if (slot.itemIdx <= 0)
-			//		continue;
-			//
-			//	auto info = ItemInfo::Get(slot.itemIdx - 1);
-			//	LOG("slot[{}] [{}] [{}]", i, info->name, slot.count);
-			//}
-			
-
-			//Skills::PrintPlayerSkills(pPly->GetData());
-
-			//auto pCam = Game::GetCam();
-			//if (pCam)
-			//{
-			//	once = false;
-			//}
-
-			//auto iObjCount = Objects::GetObjCount();
-			//auto pObjList = Objects::GetObjList();
-			//
-			//if (iObjCount > 0 && pObjList)
-			//{
-			//	for (int i = 0; i <= iObjCount; i++)
-			//	{
-			//		auto& curObj = pObjList[i];
-			//		LOG("Obj[{}]: type[{}] itemId[{}]", i, ObjTypeToStr(curObj.objID.type), static_cast<int>(curObj.objID.id));
-			//	}
-			//}
 		}
 	}
 	else
@@ -195,8 +196,17 @@ static void Init(HookChain_Init::ICallback* chain, CHookChainArgs_Init& args)
 	CREATE_GEH("E8 ?? ?? ?? ?? D9 44 24 1C 8B 8F", pfnAddImpulseToEntity, AddImpulseToEntity);
 	CREATE_GEH("E8 ?? ?? ?? ?? 8B F8 EB 1F", pfnFillLoot, FillLoot);
 
+	Dlords::BSP::Find();
+
 	chain->callNext(args);
 }
 
+static void OnDllFrame(HookChain_OnDllFrame::ICallback* chain, CHookChainArgs_OnDllFrame& args)
+{
+
+	chain->callNext(args);
+}
+
+REGISTER_CALLBACK(OnDllFrame, OnDllFrame);
 REGISTER_CALLBACK(Init, Init);
 REGISTER_CALLBACK(OnGameFrame, OnGameFrame);

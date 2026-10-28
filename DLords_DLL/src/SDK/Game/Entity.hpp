@@ -264,7 +264,7 @@ struct dl_object_t
 	int16_t animNum;
 	int16_t unk0D4;
 	int32_t unk0D8;
-	int16_t unk0DC_l;
+	int16_t corpseEffectId;
 	int16_t unk0DC_h;
 	void* pAnimInfo;
 	int32_t unk0E4;
@@ -281,7 +281,7 @@ struct dl_object_t
 	float unk128;
 	vector3 maxs;
 	vector3 mins;
-	int32_t unk_y;
+	int32_t hasDetailedCollision;
 	int32_t unk_z;
 };
 static_assert(sizeof(dl_object_t) == 0x14C); // 332
@@ -456,8 +456,8 @@ struct dl_npc_t
 	char name[24];
 	int32_t entity_id;
 	int32_t npc_mon_id;
-	int32_t field_0x20;
-	int32_t field_0x24;
+	int32_t behaviorFlags;
+	int32_t gold;
 	uint8_t reserved_0x28[58];
 	int16_t db_primary_table_id;
 	int16_t db_secondary_table_id;
@@ -478,9 +478,9 @@ struct dl_npc_t
 	int32_t pad1_0x16C;
 	int32_t pad1_0x170;
 	int32_t pad1_0x174;
-	uint8_t pad1_0x178;
+	uint8_t busyState;
 	uint8_t attackTarget;
-	uint8_t pad1_0x17A;
+	uint8_t autoLootFlag;
 	uint8_t pad1_align_0x17B;
 	int16_t treasure_table_id_1;
 	int16_t treasure_table_id_2;
@@ -499,24 +499,17 @@ struct dl_npc_t
 	void* pRspBuf;
 	int32_t pad3_0x1AC;
 	int32_t frametime;
-	uint8_t pad3_0x1B4[8];
+	uint8_t dialogueQueueFlags[8];
 	int32_t pad3_0x1BC;
 	int32_t pad3_0x1C0;
-	int32_t pad3_0x1C4;
-	int32_t pad3_0x1C8;
-	int32_t pad3_0x1CC;
-	int32_t pad3_0x1D0;
-	int32_t pad3_0x1D4;
-	int32_t pad3_0x1D8;
-	int32_t pad3_0x1DC;
-	int32_t pad3_0x1E0;
+	int32_t perPlayerState[8];
 	int32_t pad3_0x1E4;
 	int32_t pad3_0x1E8;
-	int32_t pad3_0x1EC;
-	int32_t pad3_0x1F0;
+	int32_t scaleNear;
+	int32_t scaleFar;
 	int32_t pad3_0x1F4;
 	int32_t pad3_0x1F8;
-	int32_t pad3_0x1FC;
+	int32_t visitorCount;
 	int32_t pad3_0x200;
 	int32_t pad3_0x204;
 	int32_t pad3_0x208;
@@ -532,7 +525,7 @@ struct dl_npc_t
 	int32_t equip_slot_7;
 	int32_t equip_slot_8;
 	uint8_t pad3_0x38A[2];
-	int32_t pad3_0x38C;
+	int32_t dialogueState;
 	uint8_t pad3_0x390[224];
 	int32_t pad3_0x470;
 	uint8_t pad3_0x474[340];
@@ -542,6 +535,28 @@ struct dl_npc_t
 	int32_t pad3_0x67C;
 };
 static_assert(sizeof(dl_npc_t) == 0x680); // 1664
+
+enum EStatusSlot : int
+{
+	ESS_PetrifyA = 0,		// case 1: ProPetrify, effect 157
+	ESS_FearA = 1,			// case 5: ProPetrify
+	ESS_Weakness = 2,		// RemoveStatusType case 6
+	ESS_PetrifyB = 3,		// case 4: ProPetrify, effect 157 (Stun)
+	ESS_Disease = 4,		// case 6: ProPetrify
+	ESS_Blindness = 5,		// sub_421860: ProPetrify
+	ESS_Poison = 6,			// case 7: ProPoison, effect 13 (CONFIRMED)
+	ESS_Paralyze = 7,		// RemoveStatusType case 4
+	ESS_FearB = 8,			// sub_421860: ProPetrify; sub_4667C0 effect 19
+	ESS_Stun = 9,			// case 8: ProPoison check
+	ESS_Slow = 10,			// RemoveStatusType case 9
+	ESS_CharmA = 11,		// Charm: stores charmer ID (attackerId+1)
+	ESS_InvisibilityA = 12,	// scaleX = 0
+	ESS_InvisibilityB = 13,	// case 0xB: ProPetrify (only if not active)
+	ESS_Unused = 14,		// unused
+	ESS_CharmB = 15,		// Charm: stores duration
+
+	ESS_Max
+};
 
 struct dl_entity_t
 {
@@ -555,9 +570,10 @@ struct dl_entity_t
 
 	unsigned int flags;
 
-	int unk014;
-	float unk018;
-	float unk01C;
+	int16_t unk014_l;
+	int16_t unk014_r;
+	float scaleX;
+	float scaleY;
 
 	/* Entity position in the world. */
 	vector3 pos;
@@ -566,17 +582,17 @@ struct dl_entity_t
 
 	int unk05C;
 	float entityHeight;
-	int unk064;
-	int unk068;
-	int unk06C;
+	int moveSpeedX;
+	int moveSpeedY;
+	int moveSpeedZ;
 	float entityOffset;
-	int unk074;
-	int unk078;
-	int unk07C;
+	int moveSpeedAccum;
+	int corpseFadeDelay;
+	int corpseFadeDuration;
 	int16_t unk080;
 	int16_t unk082;
-	float unk084;
-	float unk088;
+	float moveSpeed;
+	float moveSpeedScaled;
 	int unk08C;
 	int unk090;
 	int unk094;
@@ -621,10 +637,10 @@ struct dl_entity_t
 	int16_t objId;
 	int16_t unk12E;
 	int unk130;
-	int16_t unk134;
-	int16_t unk136;
-	int16_t unk138;
-	int16_t unk13A;
+	int16_t aiState1;
+	int16_t aiState2;
+	int16_t aiState3;
+	int16_t aiState4;
 	int lootMonId2;
 	int lootMonId;
 	int unk144;
@@ -675,27 +691,27 @@ struct dl_entity_t
 	int16_t unk560;
 	float unk564;
 	int16_t unk568;
-	int16_t iDexterity4;
-	int16_t iDodgeParry_R;
-	int16_t iArmor;
+	int16_t attackRating;
+	int16_t parryRating;
+	int16_t shieldRating;
 	int16_t iDefense;
-	int16_t iStrength3;
-	int iAttackSpeed32;
+	int16_t deathState;
+	int actionDelay;
 	int unk578;
-	char str_unk57C[64];
-	int unk5BC;
-	int unk5C0;
+	int statusEffectDuration[EStatusSlot::ESS_Max]; // EStatusSlot
+	int nextPoisionDamageTime;
+	int nextSomethingDamageTime;
 	int unk5C4;
 	int unk5C8;
 	int unk5CC;
-	int unk5D0;
+	int xpReward;
 	vector3 velImpulse;
 	float velImpulseLen;
 	float unk5E4;
 	int unk5E8;
 	int unk5EC;
 	int16_t mountFlags;
-	int16_t riderId;;
+	int16_t riderId;
 	int16_t mountId;
 	unsigned __int8 unk5F6;
 	unsigned __int8 unk5F7;
@@ -730,12 +746,10 @@ struct dl_entity_t
 	int unk664;
 	int unk668;
 	int unk66C;
-	int unk670;
-	int unk674;
-	int unk678;
-	int unk67C;
+	vector3 targetPos;
+	int followState;
 	int unk680;
-	int unk684;
+	int attachSlotIndex;
 	int16_t unk688;
 	int16_t unk68A;
 	int unk68C;

@@ -1005,7 +1005,12 @@ namespace ItemInfo
 
 namespace Item
 {
+	int RollRarityMod(int level = 0);
+
 	bool AddToPlayer(dl_player_t* pPly, uint32_t itemId, uint32_t count, int32_t slotId = -1);
 	bool ClearAllForPlayer(dl_player_t* pPly);
-	bool SpawnInWorld(uint32_t itemId);
+	bool SpawnInWorld(uint32_t itemId, int level = 0);
+
+	void __fastcall Item_InitFromIdx(dl_item_t* pItem, int itemIdx, int count);
+	void __fastcall Item_FormatModRarity(dl_item_t* pItem, int rarModId);
 }

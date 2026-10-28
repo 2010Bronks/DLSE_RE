@@ -230,6 +230,15 @@ namespace ItemInfo
 
 namespace Item
 {
+	using CreateItem_t = dl_object_t * (__fastcall*)(int itemIdx, vector3* pos, vector3* rot);
+	static CreateItem_t pfnCreateItem = nullptr;
+
+	using Item_InitFromIdx_T = void(__fastcall*)(dl_item_t* pItem, int itemIdx, int count);
+	static Item_InitFromIdx_T pfnItem_InitFromIdx = nullptr;
+
+	using Item_FormatModRarity_T = void(__fastcall*)(dl_item_t* pItem, int rarModId);
+	static Item_FormatModRarity_T pfnItem_FormatModRarity = nullptr;
+
 	using AddItemToPlayer_t = void(__fastcall*)(dl_player_t* pPly, int itemId, int count, int slotId);
 	static AddItemToPlayer_t pfnAddItemToPlayer;
 	static void __fastcall AddItemToPlayer(dl_player_t* pPly, int itemId, int count, int slotId)
@@ -262,8 +271,23 @@ namespace Item
 		pfnClearItemsForPlayer(pPly);
 	}
 
-	using CreateItem_t = dl_object_t * (__fastcall*)(int itemIdx, vector3* pos, vector3* rot);
-	static CreateItem_t pfnCreateItem = nullptr;
+	int RollRarityMod(int level)
+	{
+		auto pRnd = Game::GetRandomSeed();
+		auto pLcg = Game::GetRandomLcgMul();
+		if (!pRnd || !pLcg)
+			return 0;
+
+		// Roll rarity
+		*pRnd *= *pLcg;
+		int v24 = (3 * HIWORD(*pRnd)) >> 16;
+
+		int v25 = level / 5 + v24 - 1;
+		if (v25 < 1)
+			v25 = 1;
+
+		return v25;
+	}
 
 	static dl_object_t* __fastcall CreateItem(int itemIdx, vector3* pos, vector3* rot)
 	{
@@ -286,7 +310,32 @@ namespace Item
 
 		return pObj;
 	}
+	
+	void __fastcall Item_InitFromIdx(dl_item_t* pItem, int itemIdx, int count)
+	{
+		if (!pfnItem_InitFromIdx)
+			return;
 
+		pfnItem_InitFromIdx(pItem, itemIdx, count);
+	}
+
+	void __fastcall Item_FormatModRarity(dl_item_t* pItem, int rarModId)
+	{
+		if (!pfnItem_FormatModRarity)
+			return;
+
+		pfnItem_FormatModRarity(pItem, rarModId);
+	}
+
+	using Item_SpawnInWorld_T = int(__fastcall*)(int itemIdx, vector3* pos, int a3, dl_item_t* pItem);
+	static Item_SpawnInWorld_T pfnItem_SpawnInWorld = nullptr;
+	static int __fastcall Item_SpawnInWorld(int itemIdx, vector3* pos, int a3, dl_item_t* pItem)
+	{
+		if (!pfnItem_SpawnInWorld)
+			return -1;
+
+		return pfnItem_SpawnInWorld(itemIdx, pos, a3, pItem);
+	}
 
 	bool AddToPlayer(dl_player_t* pPly, uint32_t itemId, uint32_t count, int32_t slotId)
 	{
@@ -337,9 +386,9 @@ namespace Item
 		return true;
 	}
 
-	bool SpawnInWorld(uint32_t itemId)
+	bool SpawnInWorld(uint32_t itemId, int level)
 	{
-		if (!pfnCreateItem)
+		if (!pfnItem_SpawnInWorld)
 		{
 			LOG_ERROR("[Item::SpawnInWorld] Function pointer is not ready.");
 			return false;
@@ -358,22 +407,36 @@ namespace Item
 			return false;
 		}
 
+#if 0
+		dl_item_t pItem;
+
+		int rar = 0; 
+		if (auto pPly = GetLocalPlayer())
+			rar = RollRarityMod(level == 0 ? pPly->GetData()->iLevel32 : level);
+		else
+			rar = RollRarityMod(level);
+
+		pfnItem_InitFromIdx(&pItem, itemId, 0);
+		pfnItem_FormatModRarity(&pItem, rar);
+#endif
+	
 		vector3 forward, rot;
 		rot = ToSourceAngles(pLocal->rot);
 		GetDirections(&rot, &forward);
 		auto pos = pLocal->pos + forward * 4.0f * 1024.f;
 
-		auto pObj = pfnCreateItem(itemId, &pos, &pLocal->rot);
+		auto pObj = CreateItem(itemId, &pos, &rot);
 		return pObj ? true : false;
 	}
-
-	// void __fastcall sub_45E020(dl_item_t *pItem, int rarity)
 
 	static void Find()
 	{
 		CREATE_GEH("E8 ?? ?? ?? ?? 68 84 00 00 00 6A 00 BA 68 01 00 00 8B CE E8 ?? ?? ?? ?? 6A 78", pfnAddItemToPlayer, AddItemToPlayer);
 		CREATE_GEH("E8 ?? ?? ?? ?? B9 ?? ?? ?? ?? E8 ?? ?? ?? ?? B9 ?? ?? ?? ?? E8 ?? ?? ?? ?? 8B 8E 0C 83 00 00", pfnClearItemsForPlayer, ClearItemsForPlayer);
 		CREATE_GEH("E8 ?? ?? ?? ?? 89 06 EB 1C", pfnCreateItem, CreateItem);
+		CREATE_GEH("E8 ?? ?? ?? ?? 8B 44 24 10 89 44 24 38", pfnItem_InitFromIdx, Item_InitFromIdx);
+		CREATE_GEH("E8 ?? ?? ?? ?? 8D 4C 24 28 51 8B 4C 24 14", pfnItem_FormatModRarity, Item_FormatModRarity);
+		CREATE_GEH("E8 ?? ?? ?? ?? 5F 5E 5B 8B 4C 24 30", pfnItem_SpawnInWorld, Item_SpawnInWorld);
 	}
 }
 

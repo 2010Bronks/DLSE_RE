@@ -32,7 +32,11 @@ namespace Game
 {
 	using GetCameraMovement_t = CCameraMovement * (__stdcall*)();
 
+	extern int *GetRandomSeed();
+	extern int *GetRandomLcgMul();
+
 	extern float GetFrametime();
+	extern int GetFrametimeMs();
 	extern float GetFPS();
 
 	// returns GS_MAX(255) on any error

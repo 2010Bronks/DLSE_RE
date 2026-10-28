@@ -104,11 +104,6 @@ static void TabElements()
 	{
 		ImGui::Text("Could not get WorldTime.");
 	}
-
-	if (SimpleUI::Button("Warp game time", ImVec2(200.0f, 0.0f)))
-	{
-		WorldTime::Set(999, 13, 37);
-	}
 	
 	ImGui::SliderFloat("CamFOV", gCam_Fov, 0.0f, 5.0f);
 	ImGui::InputFloat("gYonTiles", gYonTiles);

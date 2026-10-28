@@ -247,7 +247,6 @@ static const std::string SkillGroupToStr(ESkillGroup num)
 #undef SKILL_GP_NUM_CASE
 }
 
-
 #define HIDE_FIELD(field) private: field; public:
 
 struct skill_t
@@ -268,15 +267,6 @@ enum EStatType : uint32_t
 
 	StatTypeMax,
 };
-
-/*
-	15-0 {"Pro Magic", {15,0}},		// adds resist[id]
-	16-1 {"Pro Fire", {16,0}},		// adds resist[id]
-	17-4 {"Pro Ice", {17,0}},		// adds resist[id]
-	18-3 {"Pro Poison", {18,0}},		// adds resist[id]
-	19-2 {"Pro Petrify", {19,0}},	// adds resist[id]
-	20-5 {"Pro Gas", {20,0}},		// adds resist[id]
-*/
 
 enum EResistType : uint32_t
 {
